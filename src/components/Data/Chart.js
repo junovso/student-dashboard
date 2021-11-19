@@ -913,12 +913,6 @@ const DatalistWithLabels = Data.map((avg) => ({
   )}, enjoymentRating: ${avg.Leuk.toFixed(1)}`,
 }));
 
-const enjoymentRating = DatalistWithLabels.map((avg) => avg.enjoymentRating);
-const difficultyRating = DatalistWithLabels.map((avg) => avg.difficultyRating);
-const average = (array) => array.reduce((a, b) => a + b) / array.length;
-console.log(enjoymentRating);
-console.log(DatalistWithLabels);
-
 const Chart = () => (
   <>
     <VictoryChart domainPadding={15} theme={wincTheme}>
@@ -929,7 +923,7 @@ const Chart = () => (
           x="assignment"
           y="difficultyRating"
           tickValues={[1, 2, 3, 4, 5]}
-          tickFormat={average(difficultyRating)}
+          tickFormat={DatalistWithLabels.map((avg) => avg.difficultyRating)}
         />
         <VictoryBar
           labelComponent={<VictoryTooltip />}
@@ -937,7 +931,7 @@ const Chart = () => (
           x="assignment"
           y="enjoymentRating"
           tickValues={[1, 2, 3, 4, 5]}
-          tickFormat={average(enjoymentRating)}
+          tickFormat={DatalistWithLabels.map((avg) => avg.enjoymentRating)}
         />
       </VictoryGroup>
       <VictoryAxis
